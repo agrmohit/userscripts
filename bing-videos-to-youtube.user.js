@@ -4,7 +4,7 @@
 // @match       https://www.bing.com/videos/*&&view=detail&mid*
 // @match       https://www.bing.com/videos/search?*
 // @grant       none
-// @version     1.0
+// @version     1.0.1
 // @author      agrmohit
 // @description Redirect youtube videos playing in bing to youtube
 // @license     MIT

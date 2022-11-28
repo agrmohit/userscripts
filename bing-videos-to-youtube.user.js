@@ -7,6 +7,7 @@
 // @version     1.0.1
 // @author      agrmohit
 // @description Redirect youtube videos playing in bing to youtube
+// @downloadURL https://github.com/agrmohit/userscripts/raw/main/bing-videos-to-youtube.user.js
 // @license     MIT
 // ==/UserScript==
 

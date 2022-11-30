@@ -1,13 +1,6 @@
 // ==UserScript==
 // @name        Mastodon easy follow
 // @namespace   agrmohit
-// @grant       GM_setValue
-// @grant       GM_getValue
-// @grant       GM_listValues
-// @version     1.2.0
-// @author      agrmohit
-// @description Open the mastodon profile in your own instance by clicking on their @username@instance
-// @downloadURL https://github.com/agrmohit/userscripts/raw/main/mastodon-easy-follow.user.js
 // @require     https://cdn.jsdelivr.net/npm/@violentmonkey/dom@2
 // @match       https://androiddev.social/*
 // @match       https://astrodon.social/*
@@ -31,6 +24,14 @@
 // @match       https://techhub.social/*
 // @match       https://toot.community/*
 // @match       https://treehouse.systems/*
+// @grant       GM_setValue
+// @grant       GM_getValue
+// @grant       GM_listValues
+// @version     1.3.0
+// @author      agrmohit
+// @description Open the mastodon profile in your own instance by clicking on their @username@instance
+// @downloadURL https://github.com/agrmohit/userscripts/raw/main/mastodon-easy-follow.user.js
+// @supportURL  https://github.com/agrmohit/userscripts/issues
 // @icon        https://www.google.com/s2/favicons?sz=128&domain=joinmastodon.org
 // @license     MIT
 // ==/UserScript==

@@ -9,10 +9,11 @@
 // @grant       GM_registerMenuCommand
 // @grant       GM_setValue
 // @grant       GM_getValue
-// @version     1.0.0
+// @version     1.1.0
 // @author      agrmohit
 // @description Extension to perform various actions on wesbites
 // @downloadURL https://github.com/agrmohit/userscripts/raw/main/page-actions.user.js
+// @supportURL  https://github.com/agrmohit/userscripts/issues
 // @license     MIT
 // ==/UserScript==
 

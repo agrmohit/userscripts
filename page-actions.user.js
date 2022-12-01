@@ -1,15 +1,19 @@
 // ==UserScript==
 // @name        Page Actions
 // @namespace   agrmohit
+// @require     https://cdn.jsdelivr.net/npm/@violentmonkey/dom@2
 // @require     https://cdn.jsdelivr.net/npm/@violentmonkey/shortcut@1
 // @match       https://www.youtube.com/watch?v=*
 // @match       https://mangadex.org/title/*
 // @match       https://mangasee123.com/manga/*
 // @match       https://mangakatana.com/manga/*
+// @match       https://imgur.com/*
+// @exclude-match https://imgur.com/gallery/*
 // @grant       GM_registerMenuCommand
+// @grant       GM_unregisterMenuCommand
 // @grant       GM_setValue
 // @grant       GM_getValue
-// @version     1.1.0
+// @version     1.2.0
 // @author      agrmohit
 // @description Extension to perform various actions on wesbites
 // @downloadURL https://github.com/agrmohit/userscripts/raw/main/page-actions.user.js
@@ -110,6 +114,23 @@ const mangakatanaActions = () => {
   register(GM_getValue("shortcut"), readInCubari);
 };
 
+const imgurActions = () => {
+  VM.observe(document.body, () => {
+    const imageElement = document.querySelector(".image-placeholder");
+    if (imageElement && imageElement.src.match(/./)) {
+      const openImage = () => {
+        window.location.href = imageElement.src;
+      };
+
+      GM_registerMenuCommand("Open image", openImage);
+      register(GM_getValue("shortcut"), openImage);
+    } else {
+      GM_unregisterMenuCommand("Open image", openImage);
+      register(GM_getValue("shortcut"), null);
+    }
+  });
+};
+
 switch (window.location.hostname) {
   case "www.youtube.com":
     setTimeout(() => youtubeActions(), 7_000);
@@ -122,5 +143,8 @@ switch (window.location.hostname) {
     break;
   case "mangakatana.com":
     mangakatanaActions();
+    break;
+  case "imgur.com":
+    imgurActions();
     break;
 }

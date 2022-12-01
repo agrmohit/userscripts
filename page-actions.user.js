@@ -9,6 +9,7 @@
 // @match       https://mangakatana.com/manga/*
 // @match       https://imgur.com/*
 // @exclude-match https://imgur.com/gallery/*
+// @match       https://cdn.jsdelivr.net/npm/*
 // @grant       GM_registerMenuCommand
 // @grant       GM_unregisterMenuCommand
 // @grant       GM_setValue
@@ -82,7 +83,7 @@ const youtubeActions = () => {
 };
 
 const mangadexActions = () => {
-  let regex = /https:\/\/mangadex.org\/title\/([a-z0-9-]+)/i;
+  let regex = /https:\/\/mangadex.org\/title\/([a-z0-9-]+)/;
   let match = regex.exec(window.location.href);
 
   const readInCubari = () => {
@@ -94,7 +95,7 @@ const mangadexActions = () => {
 };
 
 const mangaseeActions = () => {
-  let regex = /https:\/\/mangasee123.com\/manga\/([a-z0-9-]+)/i;
+  let regex = /https:\/\/mangasee123.com\/manga\/([a-z0-9-]+)/;
   let match = regex.exec(window.location.href);
 
   const readInCubari = () => {
@@ -131,6 +132,19 @@ const imgurActions = () => {
   });
 };
 
+const jsdelivrActions = () => {
+  let regex =
+    /https:\/\/cdn.jsdelivr.net\/npm\/(@?[a-zA\/0-9]+)(?:[@0-9a-z\/\.-]*)/;
+  let match = regex.exec(window.location.href);
+
+  const openInNpm = () => {
+    window.location.href = `https://www.npmjs.com/package/${match[1]}`;
+  };
+
+  GM_registerMenuCommand("Open in npm", openInNpm);
+  register(GM_getValue("shortcut"), openInNpm);
+};
+
 switch (window.location.hostname) {
   case "www.youtube.com":
     setTimeout(() => youtubeActions(), 7_000);
@@ -146,5 +160,8 @@ switch (window.location.hostname) {
     break;
   case "imgur.com":
     imgurActions();
+    break;
+  case "cdn.jsdelivr.net":
+    jsdelivrActions();
     break;
 }

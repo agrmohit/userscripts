@@ -26,7 +26,6 @@
 // @match       https://treehouse.systems/*
 // @grant       GM_setValue
 // @grant       GM_getValue
-// @grant       GM_listValues
 // @version     1.3.0
 // @author      agrmohit
 // @description Open the mastodon profile in your own instance by clicking on their @username@instance
@@ -66,26 +65,24 @@ if (typeof GM_setValue !== "undefined" && typeof GM_getValue !== "undefined") {
 
 const disconnect = VM.observe(document.body, () => {
   // Select element of interest
-  let node = document.querySelector(GM_getValue(GM_listValues()[0]));
+  let node = document.querySelector(GM_getValue("selector"));
 
   // For compatibility with mastodon v3.x.x
   if (!node) {
-    node = document.querySelector(GM_getValue(GM_listValues()[1]));
+    node = document.querySelector(GM_getValue("selectorV3"));
   }
 
   if (node) {
     const username = node.textContent;
 
     // Don't add event listener if user is on their own instance
-    if (window.location.hostname == GM_getValue(GM_listValues()[2])) {
+    if (window.location.hostname == GM_getValue("instance")) {
       return true;
     }
 
     // Add an 'click' event listener that works as a link
     node.addEventListener("click", () =>
-      window.location.replace(
-        `https://${GM_getValue(GM_listValues()[2])}/${username}`
-      )
+      window.location.replace(`https://${GM_getValue("instance")}/${username}`)
     );
 
     // Disconnect observer

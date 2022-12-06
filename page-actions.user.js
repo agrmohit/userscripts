@@ -14,7 +14,7 @@
 // @grant       GM_unregisterMenuCommand
 // @grant       GM_setValue
 // @grant       GM_getValue
-// @version     1.3.0
+// @version     1.3.1
 // @author      agrmohit
 // @description Extension to perform various actions on wesbites
 // @downloadURL https://github.com/agrmohit/userscripts/raw/main/page-actions.user.js
@@ -69,13 +69,17 @@ const youtubeActions = () => {
 
   register(GM_getValue("shortcut"), () => {
     const choice = prompt(
-      `1. Remove right sidebar (Watch Next, Live Chat)\n2. Remove comments section\n3. Dismiss`
+      `1. Remove right sidebar (Watch Next, Live Chat)\n2. Remove comments section\n3. All of the above`
     );
     switch (choice) {
       case "1":
         removeRightSidebar();
         break;
       case "2":
+        removeCommentsSection();
+        break;
+      case "3":
+        removeRightSidebar();
         removeCommentsSection();
         break;
     }

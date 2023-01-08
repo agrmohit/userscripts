@@ -4,7 +4,7 @@
 // @match       https://www.bing.com/videos/*&&view=detail&mid*
 // @match       https://www.bing.com/videos/search?*
 // @grant       none
-// @version     1.2.0
+// @version     1.2.1
 // @author      agrmohit
 // @description Redirect youtube videos playing in bing to youtube
 // @downloadURL https://github.com/agrmohit/userscripts/raw/main/bing-videos-to-youtube.user.js
@@ -13,7 +13,7 @@
 // @license     MIT
 // ==/UserScript==
 
-const selector = ".mmvdp_meta_title_link";
+const selector = ".source";
 
 window.addEventListener("load", () => {
   if (document.querySelector(selector)) {

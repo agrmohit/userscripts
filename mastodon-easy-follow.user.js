@@ -34,7 +34,7 @@
 // @match       https://vt.social/*
 // @grant       GM_setValue
 // @grant       GM_getValue
-// @version     1.3.2
+// @version     1.3.3
 // @author      agrmohit
 // @description Open the mastodon profile in your own instance by clicking on their @username@instance
 // @downloadURL https://github.com/agrmohit/userscripts/raw/main/mastodon-easy-follow.user.js

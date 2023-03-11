@@ -15,7 +15,7 @@
 // @grant       GM_unregisterMenuCommand
 // @grant       GM_setValue
 // @grant       GM_getValue
-// @version     1.5.0
+// @version     1.5.1
 // @author      agrmohit
 // @description Extension to perform various actions on wesbites
 // @downloadURL https://github.com/agrmohit/userscripts/raw/main/page-actions.user.js
@@ -78,6 +78,7 @@ const youtubeActions = () => {
       `1. Remove right sidebar (Watch Next, Live Chat)\n2. Remove comments section\n3. All of the above`
     );
     switch (choice) {
+      case "":
       case "1":
         removeRightSidebar();
         break;

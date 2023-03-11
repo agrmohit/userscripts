@@ -15,7 +15,7 @@
 // @grant       GM_unregisterMenuCommand
 // @grant       GM_setValue
 // @grant       GM_getValue
-// @version     1.4.0
+// @version     1.4.1
 // @author      agrmohit
 // @description Extension to perform various actions on wesbites
 // @downloadURL https://github.com/agrmohit/userscripts/raw/main/page-actions.user.js
@@ -52,12 +52,12 @@ const youtubeActions = () => {
   if (join) join.remove();
 
   const removeRightSidebar = () => {
-    let el = document.querySelector("#secondary");
+    const el = document.querySelector("#secondary");
     if (el) el.remove();
   };
 
   const removeCommentsSection = () => {
-    let el = document.querySelector("#comments");
+    const el = document.querySelector("#comments");
     if (el) el.remove();
   };
 
@@ -88,8 +88,8 @@ const youtubeActions = () => {
 };
 
 const mangadexActions = () => {
-  let regex = /https:\/\/mangadex.org\/title\/([a-z0-9-]+)/;
-  let match = regex.exec(window.location.href);
+  const regex = /https:\/\/mangadex.org\/title\/([a-z0-9-]+)/;
+  const match = regex.exec(window.location.href);
 
   const readInCubari = () => {
     window.location.href = `https://cubari.moe/read/mangadex/${match[1]}`;
@@ -100,8 +100,8 @@ const mangadexActions = () => {
 };
 
 const mangaseeActions = () => {
-  let regex = /https:\/\/mangasee123.com\/manga\/([a-z0-9-]+)/;
-  let match = regex.exec(window.location.href);
+  const regex = /https:\/\/mangasee123.com\/manga\/([a-z0-9-]+)/;
+  const match = regex.exec(window.location.href);
 
   const readInCubari = () => {
     window.location.href = `https://cubari.moe/read/mangasee/${match[1]}`;
@@ -138,9 +138,9 @@ const imgurActions = () => {
 };
 
 const jsdelivrActions = () => {
-  let regex =
+  const regex =
     /https:\/\/cdn.jsdelivr.net\/npm\/(@?[a-zA\/0-9]+)(?:[@0-9a-z\/\.-]*)/;
-  let match = regex.exec(window.location.href);
+  const match = regex.exec(window.location.href);
 
   const openInNpm = () => {
     window.location.href = `https://www.npmjs.com/package/${match[1]}`;
@@ -151,9 +151,9 @@ const jsdelivrActions = () => {
 };
 
 const githubRawActions = () => {
-  let regex =
+  const regex =
     /http.?:\/\/raw.githubusercontent.com\/([\w-]*)\/([\w_.-]*)\/([\w_.-]*)\/([a-zA-Z0-9-_\/\.]*)/;
-  let match = regex.exec(window.location.href);
+  const match = regex.exec(window.location.href);
 
   const openInGitHub = () => {
     window.location.href = `https://github.com/${match[1]}/${match[2]}/blob/${match[3]}/${match[4]}`;

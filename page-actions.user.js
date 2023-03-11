@@ -15,7 +15,7 @@
 // @grant       GM_unregisterMenuCommand
 // @grant       GM_setValue
 // @grant       GM_getValue
-// @version     1.4.1
+// @version     1.5.0
 // @author      agrmohit
 // @description Extension to perform various actions on wesbites
 // @downloadURL https://github.com/agrmohit/userscripts/raw/main/page-actions.user.js
@@ -50,6 +50,11 @@ const youtubeActions = () => {
 
   const join = document.querySelector('[aria-label="Join this channel"]');
   if (join) join.remove();
+
+  // Repurpose share button to open video in mpv
+  document.querySelectorAll('button[aria-label="Share"]')[1].onclick = () => {
+    window.location = `ytdl://${window.location}`;
+  };
 
   const removeRightSidebar = () => {
     const el = document.querySelector("#secondary");

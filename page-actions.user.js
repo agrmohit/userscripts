@@ -8,13 +8,14 @@
 // @match       https://mangasee123.com/manga/*
 // @match       https://mangakatana.com/manga/*
 // @match       https://imgur.com/*
+// @match       https://raw.githubusercontent.com/*
 // @exclude-match https://imgur.com/gallery/*
 // @match       https://cdn.jsdelivr.net/npm/*
 // @grant       GM_registerMenuCommand
 // @grant       GM_unregisterMenuCommand
 // @grant       GM_setValue
 // @grant       GM_getValue
-// @version     1.3.1
+// @version     1.4.0
 // @author      agrmohit
 // @description Extension to perform various actions on wesbites
 // @downloadURL https://github.com/agrmohit/userscripts/raw/main/page-actions.user.js
@@ -149,6 +150,19 @@ const jsdelivrActions = () => {
   register(GM_getValue("shortcut"), openInNpm);
 };
 
+const githubRawActions = () => {
+  let regex =
+    /http.?:\/\/raw.githubusercontent.com\/([\w-]*)\/([\w_.-]*)\/([\w_.-]*)\/([a-zA-Z0-9-_\/\.]*)/;
+  let match = regex.exec(window.location.href);
+
+  const openInGitHub = () => {
+    window.location.href = `https://github.com/${match[1]}/${match[2]}/blob/${match[3]}/${match[4]}`;
+  };
+
+  GM_registerMenuCommand("Open in GitHub", openInGitHub);
+  register(GM_getValue("shortcut"), openInGitHub);
+};
+
 switch (window.location.hostname) {
   case "www.youtube.com":
     setTimeout(() => youtubeActions(), 7_000);
@@ -167,5 +181,8 @@ switch (window.location.hostname) {
     break;
   case "cdn.jsdelivr.net":
     jsdelivrActions();
+    break;
+  case "raw.githubusercontent.com":
+    githubRawActions();
     break;
 }

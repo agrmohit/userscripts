@@ -11,11 +11,12 @@
 // @match       https://raw.githubusercontent.com/*
 // @exclude-match https://imgur.com/gallery/*
 // @match       https://cdn.jsdelivr.net/npm/*
+// @match       https://twitter.com/*
 // @grant       GM_registerMenuCommand
 // @grant       GM_unregisterMenuCommand
 // @grant       GM_setValue
 // @grant       GM_getValue
-// @version     1.5.1
+// @version     1.6.0
 // @author      agrmohit
 // @description Extension to perform various actions on wesbites
 // @downloadURL https://github.com/agrmohit/userscripts/raw/main/page-actions.user.js
@@ -169,6 +170,15 @@ const githubRawActions = () => {
   register(GM_getValue("shortcut"), openInGitHub);
 };
 
+const twitterActions = () => {
+  const openInNitter = () => {
+    window.location = window.location.href.replace("twitter.com", "nitter.net");
+  };
+
+  GM_registerMenuCommand("Open in Nitter", openInNitter);
+  register(GM_getValue("shortcut"), openInNitter);
+};
+
 switch (window.location.hostname) {
   case "www.youtube.com":
     setTimeout(() => youtubeActions(), 7_000);
@@ -190,5 +200,8 @@ switch (window.location.hostname) {
     break;
   case "raw.githubusercontent.com":
     githubRawActions();
+    break;
+  case "twitter.com":
+    twitterActions();
     break;
 }

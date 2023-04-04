@@ -7,6 +7,7 @@
 // @match       https://chaos.social/*
 // @match       https://cloudflare.social/*
 // @match       https://fediscience.org/*
+// @match       https://flipboard.social/*
 // @match       https://floss.social/*
 // @match       https://fosstodon.org/*
 // @match       https://front-end.social/*
@@ -35,7 +36,7 @@
 // @match       https://vt.social/*
 // @grant       GM_setValue
 // @grant       GM_getValue
-// @version     1.3.4
+// @version     1.3.5
 // @author      agrmohit
 // @description Open the mastodon profile in your own instance by clicking on their @username@instance
 // @downloadURL https://github.com/agrmohit/userscripts/raw/main/mastodon-easy-follow.user.js

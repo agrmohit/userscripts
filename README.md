@@ -22,7 +22,7 @@ A collection of userscripts
 
 ### Common Instructions
 
-```md
+```txt
 - Install the user script
 - Let the user script run at least once by loading an applicable url
 - Click the edit button for this script from the Violentmonkey menu

@@ -4,9 +4,10 @@ A collection of userscripts
 
 ## Steps to install
 
-- Install [Violentmonkey](https://violentmonkey.github.io/get-it/)
-- Click on the script you want to install
-- A violentmonkey page will open automatically
+- Install [Violentmonkey](https://violentmonkey.github.io/get-it/) (Recommended) or any other userscript manager
+- Click on the script you want to install in the table below
+- Follow given instructions
+- A Violentmonkey page will open automatically
 - Go through the code and permissions to make sure its safe (VERY IMPORTANT)
 - Click the green 'Confirm installation' button
 - Close the page
@@ -21,7 +22,7 @@ A collection of userscripts
 
 ### Common Instructions
 
-```txt
+```md
 - Install the user script
 - Let the user script run at least once by loading an applicable url
 - Click the edit button for this script from the Violentmonkey menu

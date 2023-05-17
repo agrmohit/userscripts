@@ -9,6 +9,7 @@
 // @match       https://mangakatana.com/manga/*
 // @match       https://imgur.com/*
 // @match       https://raw.githubusercontent.com/*
+// @match       https://rss.agrmohit.com/unread
 // @exclude-match https://imgur.com/gallery/*
 // @match       https://cdn.jsdelivr.net/npm/*
 // @match       https://twitter.com/*
@@ -16,7 +17,7 @@
 // @grant       GM_unregisterMenuCommand
 // @grant       GM_setValue
 // @grant       GM_getValue
-// @version     1.6.0
+// @version     1.7.0
 // @author      agrmohit
 // @description Extension to perform various actions on wesbites
 // @downloadURL https://github.com/agrmohit/userscripts/raw/main/page-actions.user.js
@@ -179,6 +180,27 @@ const twitterActions = () => {
   register(GM_getValue("shortcut"), openInNitter);
 };
 
+const minifluxActions = () => {
+  const removeYoutubeArticles = () => {
+    let count = 1;
+    let articles = document.querySelector(".items").childNodes;
+    articles.forEach((article) => {
+      if (
+        article.querySelector(".category").textContent.match(/YouTube/) !== null
+      ) {
+        // Without a timeout it does not remove all of the matching elements
+        setTimeout(() => {
+          article.remove();
+        }, count * 10);
+        count += 1;
+      }
+    });
+  };
+
+  GM_registerMenuCommand("Remove YouTube articles", removeYoutubeArticles);
+  register(GM_getValue("shortcut"), removeYoutubeArticles);
+};
+
 switch (window.location.hostname) {
   case "www.youtube.com":
     setTimeout(() => youtubeActions(), 7_000);
@@ -203,5 +225,8 @@ switch (window.location.hostname) {
     break;
   case "twitter.com":
     twitterActions();
+    break;
+  case "rss.agrmohit.com":
+    minifluxActions();
     break;
 }

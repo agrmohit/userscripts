@@ -13,6 +13,7 @@
 // @exclude-match https://imgur.com/gallery/*
 // @match       https://cdn.jsdelivr.net/npm/*
 // @match       https://twitter.com/*
+// @match       https://www.reddit.com/*
 // @grant       GM_registerMenuCommand
 // @grant       GM_unregisterMenuCommand
 // @grant       GM_setValue
@@ -201,6 +202,18 @@ const minifluxActions = () => {
   register(GM_getValue("shortcut"), removeYoutubeArticles);
 };
 
+const redditActions = () => {
+  const regex = /https:\/\/www.reddit.com([\/\w]*)/;
+  const match = regex.exec(window.location.href);
+
+  const openInShReddit = () => {
+    window.location.href = `https://sh.reddit.com${match[1]}`;
+  };
+
+  GM_registerMenuCommand("Open in sh.reddit", openInShReddit);
+  register(GM_getValue("shortcut"), openInShReddit);
+};
+
 switch (window.location.hostname) {
   case "www.youtube.com":
     setTimeout(() => youtubeActions(), 7_000);
@@ -228,5 +241,8 @@ switch (window.location.hostname) {
     break;
   case "rss.agrmohit.com":
     minifluxActions();
+    break;
+  case "www.reddit.com":
+    redditActions();
     break;
 }

@@ -14,11 +14,12 @@
 // @match       https://cdn.jsdelivr.net/npm/*
 // @match       https://twitter.com/*
 // @match       https://www.reddit.com/*
+// @match       https://x.com/*
 // @grant       GM_registerMenuCommand
 // @grant       GM_unregisterMenuCommand
 // @grant       GM_setValue
 // @grant       GM_getValue
-// @version     1.8.0
+// @version     1.8.1
 // @author      agrmohit
 // @description Extension to perform various actions on wesbites
 // @downloadURL https://github.com/agrmohit/userscripts/raw/main/page-actions.user.js
@@ -174,7 +175,10 @@ const githubRawActions = () => {
 
 const twitterActions = () => {
   const openInNitter = () => {
-    window.location = window.location.href.replace("twitter.com", "nitter.net");
+    window.location = window.location.href.replace(
+      /(twitter\.com|x\.com)/,
+      "nitter.net"
+    );
   };
 
   GM_registerMenuCommand("Open in Nitter", openInNitter);
@@ -237,6 +241,7 @@ switch (window.location.hostname) {
     githubRawActions();
     break;
   case "twitter.com":
+  case "x.com":
     twitterActions();
     break;
   case "rss.agrmohit.com":

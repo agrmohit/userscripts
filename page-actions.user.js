@@ -15,11 +15,12 @@
 // @match       https://twitter.com/*
 // @match       https://www.reddit.com/*
 // @match       https://x.com/*
+// @match       https://anilist.co/*
 // @grant       GM_registerMenuCommand
 // @grant       GM_unregisterMenuCommand
 // @grant       GM_setValue
 // @grant       GM_getValue
-// @version     1.8.1
+// @version     1.9.0
 // @author      agrmohit
 // @description Extension to perform various actions on wesbites
 // @downloadURL https://github.com/agrmohit/userscripts/raw/main/page-actions.user.js
@@ -218,6 +219,18 @@ const redditActions = () => {
   register(GM_getValue("shortcut"), openInShReddit);
 };
 
+const anilistActions = () => {
+  const regex = /https:\/\/anilist.co\/(?:anime|manga)\/(\d*)/;
+  const match = regex.exec(window.location.href);
+
+  const openOpenGraphImage = () => {
+    window.location.href = `https://img.anili.st/media/${match[1]}`;
+  };
+
+  GM_registerMenuCommand("Open Open Graph image", openOpenGraphImage);
+  register(GM_getValue("shortcut"), openOpenGraphImage);
+};
+
 switch (window.location.hostname) {
   case "www.youtube.com":
     setTimeout(() => youtubeActions(), 7_000);
@@ -249,5 +262,8 @@ switch (window.location.hostname) {
     break;
   case "www.reddit.com":
     redditActions();
+    break;
+  case "anilist.co":
+    anilistActions();
     break;
 }

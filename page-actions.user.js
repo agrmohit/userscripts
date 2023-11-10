@@ -16,11 +16,12 @@
 // @match       https://www.reddit.com/*
 // @match       https://x.com/*
 // @match       https://anilist.co/*
+// @match       https://paperless.agrmohit.com/documents/*
 // @grant       GM_registerMenuCommand
 // @grant       GM_unregisterMenuCommand
 // @grant       GM_setValue
 // @grant       GM_getValue
-// @version     1.9.0
+// @version     1.10.0
 // @author      agrmohit
 // @description Extension to perform various actions on wesbites
 // @downloadURL https://github.com/agrmohit/userscripts/raw/main/page-actions.user.js
@@ -231,6 +232,18 @@ const anilistActions = () => {
   register(GM_getValue("shortcut"), openOpenGraphImage);
 };
 
+const paperlessActions = () => {
+  const regex = /https:\/\/paperless.agrmohit.com\/documents\/(\d*)/;
+  const match = regex.exec(window.location.href);
+
+  const openPDF = () => {
+    window.location.href = `https://paperless.agrmohit.com/api/documents/${match[1]}/preview/`;
+  };
+
+  GM_registerMenuCommand("Open PDF", openPDF);
+  register(GM_getValue("shortcut"), openPDF);
+};
+
 switch (window.location.hostname) {
   case "www.youtube.com":
     setTimeout(() => youtubeActions(), 7_000);
@@ -265,5 +278,8 @@ switch (window.location.hostname) {
     break;
   case "anilist.co":
     anilistActions();
+    break;
+  case "paperless.agrmohit.com":
+    paperlessActions();
     break;
 }

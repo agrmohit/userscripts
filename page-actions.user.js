@@ -21,7 +21,7 @@
 // @grant       GM_unregisterMenuCommand
 // @grant       GM_setValue
 // @grant       GM_getValue
-// @version     1.10.0
+// @version     1.10.1
 // @author      agrmohit
 // @description Extension to perform various actions on wesbites
 // @downloadURL https://github.com/agrmohit/userscripts/raw/main/page-actions.user.js
@@ -40,9 +40,7 @@ if (typeof GM_setValue !== "undefined" && typeof GM_getValue !== "undefined") {
   console.log(
     `${constants.log_prefix} Storage access is not allowed by userscript manager, please update to the latest version`
   );
-  console.log(
-    `${constants.log_prefix} Alternatively, use Violentmonkey (https://violentmonkey.github.io/get-it/)`
-  );
+  console.log(`${constants.log_prefix} Alternatively, use Violentmonkey (https://violentmonkey.github.io/get-it/)`);
 
   return;
 }
@@ -72,10 +70,7 @@ const youtubeActions = () => {
     if (el) el.remove();
   };
 
-  GM_registerMenuCommand(
-    "Remove right sidebar (Watch Next, Live Chat)",
-    removeRightSidebar
-  );
+  GM_registerMenuCommand("Remove right sidebar (Watch Next, Live Chat)", removeRightSidebar);
 
   GM_registerMenuCommand("Remove comments section", removeCommentsSection);
 
@@ -150,8 +145,7 @@ const imgurActions = () => {
 };
 
 const jsdelivrActions = () => {
-  const regex =
-    /https:\/\/cdn.jsdelivr.net\/npm\/(@?[a-zA\/0-9]+)(?:[@0-9a-z\/\.-]*)/;
+  const regex = /https:\/\/cdn.jsdelivr.net\/npm\/(@?[a-zA\/0-9]+)(?:[@0-9a-z\/\.-]*)/;
   const match = regex.exec(window.location.href);
 
   const openInNpm = () => {
@@ -163,8 +157,7 @@ const jsdelivrActions = () => {
 };
 
 const githubRawActions = () => {
-  const regex =
-    /http.?:\/\/raw.githubusercontent.com\/([\w-]*)\/([\w_.-]*)\/([\w_.-]*)\/([a-zA-Z0-9-_\/\.]*)/;
+  const regex = /http.?:\/\/raw.githubusercontent.com\/([\w-]*)\/([\w_.-]*)\/([\w_.-]*)\/([a-zA-Z0-9-_\/\.]*)/;
   const match = regex.exec(window.location.href);
 
   const openInGitHub = () => {
@@ -177,10 +170,7 @@ const githubRawActions = () => {
 
 const twitterActions = () => {
   const openInNitter = () => {
-    window.location = window.location.href.replace(
-      /(twitter\.com|x\.com)/,
-      "nitter.net"
-    );
+    window.location = window.location.href.replace(/(twitter\.com|x\.com)/, "nitter.net");
   };
 
   GM_registerMenuCommand("Open in Nitter", openInNitter);
@@ -192,9 +182,7 @@ const minifluxActions = () => {
     let count = 1;
     let articles = document.querySelector(".items").childNodes;
     articles.forEach((article) => {
-      if (
-        article.querySelector(".category").textContent.match(/YouTube/) !== null
-      ) {
+      if (article.querySelector(".category").textContent.match(/YouTube/) !== null) {
         // Without a timeout it does not remove all of the matching elements
         setTimeout(() => {
           article.remove();

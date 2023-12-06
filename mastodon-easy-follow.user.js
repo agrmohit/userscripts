@@ -71,9 +71,7 @@ if (typeof GM_setValue !== "undefined" && typeof GM_getValue !== "undefined") {
   console.log(
     `${constants.log_prefix} Storage access is not allowed by userscript manager, please update to the latest version`
   );
-  console.log(
-    `${constants.log_prefix} Alternatively, use Violentmonkey (https://violentmonkey.github.io/get-it/)`
-  );
+  console.log(`${constants.log_prefix} Alternatively, use Violentmonkey (https://violentmonkey.github.io/get-it/)`);
 
   return;
 }
@@ -96,9 +94,7 @@ const disconnect = VM.observe(document.body, () => {
     }
 
     // Add an 'click' event listener that works as a link
-    node.addEventListener("click", () =>
-      window.location.replace(`https://${GM_getValue("instance")}/${username}`)
-    );
+    node.addEventListener("click", () => window.location.replace(`https://${GM_getValue("instance")}/${username}`));
 
     // Disconnect observer
     return true;

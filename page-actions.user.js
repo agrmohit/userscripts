@@ -10,6 +10,7 @@
 // @match       https://imgur.com/*
 // @match       https://raw.githubusercontent.com/*
 // @match       https://rss.agrmohit.com/unread
+// @match       https://rss.agrmohit.com/feed/*
 // @exclude-match https://imgur.com/gallery/*
 // @match       https://cdn.jsdelivr.net/npm/*
 // @match       https://twitter.com/*
@@ -21,7 +22,7 @@
 // @grant       GM_unregisterMenuCommand
 // @grant       GM_setValue
 // @grant       GM_getValue
-// @version     1.10.1
+// @version     1.11.0
 // @author      agrmohit
 // @description Extension to perform various actions on wesbites
 // @downloadURL https://github.com/agrmohit/userscripts/raw/main/page-actions.user.js
@@ -192,6 +193,13 @@ const minifluxActions = () => {
     });
   };
 
+  const openYoutubeLinksInMpv = () => {
+    document.querySelectorAll('a[href*="youtube.com/watch"]').forEach((link) => {
+      link.href = `ytdl://${link.href}`;
+    });
+  };
+
+  openYoutubeLinksInMpv();
   GM_registerMenuCommand("Remove YouTube articles", removeYoutubeArticles);
   register(GM_getValue("shortcut"), removeYoutubeArticles);
 };

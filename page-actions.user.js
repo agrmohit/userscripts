@@ -22,7 +22,7 @@
 // @grant       GM_unregisterMenuCommand
 // @grant       GM_setValue
 // @grant       GM_getValue
-// @version     1.11.0
+// @version     1.12.0
 // @author      agrmohit
 // @description Extension to perform various actions on wesbites
 // @downloadURL https://github.com/agrmohit/userscripts/raw/main/page-actions.user.js
@@ -36,6 +36,13 @@ const { register } = VM.shortcut;
 if (typeof GM_setValue !== "undefined" && typeof GM_getValue !== "undefined") {
   if (GM_getValue("shortcut") === undefined) {
     GM_setValue("shortcut", "alt-p");
+  }
+
+  // twiiit.com is a redirecting proxy for nitter instances.
+  // It redirects to a public, working nitter instance from the following list
+  // https://github.com/zedeus/nitter/wiki/Instances
+  if (GM_getValue("nitter_url") === undefined) {
+    GM_setValue("nitter_url", "twiiit.com");
   }
 } else {
   console.log(
@@ -171,7 +178,7 @@ const githubRawActions = () => {
 
 const twitterActions = () => {
   const openInNitter = () => {
-    window.location = window.location.href.replace(/(twitter\.com|x\.com)/, "nitter.net");
+    window.location = window.location.href.replace(/(twitter\.com|x\.com)/, GM_getValue("nitter_url"));
   };
 
   GM_registerMenuCommand("Open in Nitter", openInNitter);

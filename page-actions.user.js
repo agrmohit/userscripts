@@ -22,7 +22,7 @@
 // @grant       GM_unregisterMenuCommand
 // @grant       GM_setValue
 // @grant       GM_getValue
-// @version     1.12.0
+// @version     1.12.1
 // @author      agrmohit
 // @description Extension to perform various actions on wesbites
 // @downloadURL https://github.com/agrmohit/userscripts/raw/main/page-actions.user.js
@@ -188,7 +188,7 @@ const twitterActions = () => {
 const minifluxActions = () => {
   const removeYoutubeArticles = () => {
     let count = 1;
-    let articles = document.querySelector(".items").childNodes;
+    let articles = document.querySelectorAll("article");
     articles.forEach((article) => {
       if (article.querySelector(".category").textContent.match(/YouTube/) !== null) {
         // Without a timeout it does not remove all of the matching elements

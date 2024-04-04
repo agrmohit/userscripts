@@ -22,7 +22,7 @@
 // @grant       GM_unregisterMenuCommand
 // @grant       GM_setValue
 // @grant       GM_getValue
-// @version     1.12.1
+// @version     1.13.0
 // @author      agrmohit
 // @description Extension to perform various actions on wesbites
 // @downloadURL https://github.com/agrmohit/userscripts/raw/main/page-actions.user.js
@@ -63,8 +63,7 @@ const youtubeActions = () => {
   const join = document.querySelector('[aria-label="Join this channel"]');
   if (join) join.remove();
 
-  // Repurpose share button to open video in mpv
-  document.querySelectorAll('button[aria-label="Share"]')[1].onclick = () => {
+  const openInMpv = () => {
     window.location = `ytdl://${window.location}`;
   };
 
@@ -78,16 +77,21 @@ const youtubeActions = () => {
     if (el) el.remove();
   };
 
+  GM_registerMenuCommand("Open video in mpv", openInMpv);
+
   GM_registerMenuCommand("Remove right sidebar (Watch Next, Live Chat)", removeRightSidebar);
 
   GM_registerMenuCommand("Remove comments section", removeCommentsSection);
 
   register(GM_getValue("shortcut"), () => {
     const choice = prompt(
-      `1. Remove right sidebar (Watch Next, Live Chat)\n2. Remove comments section\n3. All of the above`
+      `0. Open video in mpv\n1. Remove right sidebar (Watch Next, Live Chat)\n2. Remove comments section\n3. All of the above`
     );
     switch (choice) {
       case "":
+      case "0":
+        openInMpv();
+        break;
       case "1":
         removeRightSidebar();
         break;

@@ -22,7 +22,7 @@
 // @grant       GM_unregisterMenuCommand
 // @grant       GM_setValue
 // @grant       GM_getValue
-// @version     1.13.0
+// @version     1.14.0
 // @author      agrmohit
 // @description Extension to perform various actions on wesbites
 // @downloadURL https://github.com/agrmohit/userscripts/raw/main/page-actions.user.js
@@ -190,11 +190,11 @@ const twitterActions = () => {
 };
 
 const minifluxActions = () => {
-  const removeYoutubeArticles = () => {
+  const removeNoisyArticles = () => {
     let count = 1;
     let articles = document.querySelectorAll("article");
     articles.forEach((article) => {
-      if (article.querySelector(".category").textContent.match(/YouTube/) !== null) {
+      if (article.querySelector(".category").textContent.match(/YouTube|Frequent/) !== null) {
         // Without a timeout it does not remove all of the matching elements
         setTimeout(() => {
           article.remove();
@@ -211,8 +211,8 @@ const minifluxActions = () => {
   };
 
   openYoutubeLinksInMpv();
-  GM_registerMenuCommand("Remove YouTube articles", removeYoutubeArticles);
-  register(GM_getValue("shortcut"), removeYoutubeArticles);
+  GM_registerMenuCommand("Remove YouTube articles", removeNoisyArticles);
+  register(GM_getValue("shortcut"), removeNoisyArticles);
 };
 
 const redditActions = () => {

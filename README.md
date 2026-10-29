@@ -12,11 +12,12 @@ A collection of userscripts
 - Click the green 'Confirm installation' button
 - Close the page
 
-| Script                   | Description                                                                            |
-| ------------------------ | -------------------------------------------------------------------------------------- |
-| [Bing Videos to YouTube] | Redirect youtube videos playing in bing to youtube                                     |
-| [Mastodon easy follow]   | Open the mastodon profile in your own instance by clicking on their @username@instance |
-| [Page Actions]           | Extension to perform various actions on wesbites                                       |
+| Script                     | Description                                                                            |
+| -------------------------- | -------------------------------------------------------------------------------------- |
+| [Bing Videos to YouTube]   | Redirect youtube videos playing in bing to youtube                                     |
+| [Mastodon easy follow]     | Open the mastodon profile in your own instance by clicking on their @username@instance |
+| [Page Actions]             | Extension to perform various actions on wesbites                                       |
+| [YouTube caption settings] | Force your caption display settings on YouTube                                         |
 
 ## Configuration options
 
@@ -55,3 +56,4 @@ A collection of userscripts
 [Bing Videos to YouTube]: https://github.com/agrmohit/userscripts/raw/main/bing-videos-to-youtube.user.js
 [Mastodon easy follow]: #mastodon-easy-follow
 [Page Actions]: #page-actions
+[YouTube caption settings]: https://github.com/agrmohit/userscripts/raw/main/youtube-caption-settings.user.js
